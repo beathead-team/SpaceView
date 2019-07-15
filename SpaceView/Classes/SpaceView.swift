@@ -8,7 +8,7 @@
 
 import UIKit
 
-public class SpaceView {
+class SpaceView {
     var spaceColor: UIColor = UIColor(white: 0, alpha: 0.9)
     var spaceDescription = ""
     var spaceTitle = ""
@@ -59,7 +59,7 @@ public class SpaceView {
     
     private var topInset: CGFloat {
         if #available(iOS 11.0, *) {
-            return spaceWindow?.safeAreaInsets.top ?? 44
+            return spaceView?.superview?.safeAreaInsets.top ?? 44
         } else {
             return 0
         }
@@ -97,22 +97,15 @@ public class SpaceView {
         NotificationCenter.default.removeObserver(self, name: UIDevice.orientationDidChangeNotification, object: nil)
     }
     
-    func show() {
-        var windowFrame = CGRect(x: 0, y: 0, width: screenWidth, height: spaceHeight)
+    func show(in window: SpaceWindow) {
         var spaceFrame = CGRect(x: 0, y: 0 - spaceHeight, width: screenWidth, height: spaceHeight)
         if spacePosition == .bot {
-            windowFrame = CGRect(x: 0, y: screenHeight - spaceHeight, width: screenWidth, height: spaceHeight)
             spaceFrame = CGRect(x: 0, y: screenHeight, width: screenWidth, height: spaceHeight)
         }
-        spaceWindow = UIWindow(frame: windowFrame)
-        spaceWindow?.windowLevel = UIWindow.Level.statusBar
-        spaceWindow?.isHidden = false
-        spaceWindow?.makeKeyAndVisible()
-        spaceWindow?.windowLevel = (UIWindow.Level.statusBar + 1)
         if spaceView == nil {
             spaceView = makeContent()
         }
-        spaceWindow?.addSubview(spaceView!)
+        window.addSubview(spaceView!)
         spaceView?.frame = spaceFrame
         
         let tap = UITapGestureRecognizer(target: self, action: #selector(handleTap(_:)))
@@ -265,7 +258,7 @@ public class SpaceView {
             }
         }), completion: ({ a in
             if self.canRemoveWindow {
-                self.removeWindow()
+                self.removeFromWindow()
             }
             self.canRemoveWindow = true
         }))
@@ -330,10 +323,8 @@ public class SpaceView {
         }
     }
     
-    private func removeWindow() {
-        spaceWindow?.windowLevel = (UIWindow.Level.statusBar - 1)
-        spaceWindow?.removeFromSuperview()
-        spaceWindow = nil
+    private func removeFromWindow() {
+        spaceView?.removeFromSuperview()
         spaceView = nil
         image = nil
         tapAction = nil
@@ -505,53 +496,6 @@ public class SpaceView {
     }
 }
 
-public enum HideDirection {
-    case right
-    case left
-    case top
-    case bot
-}
-
-public enum SpacePosition {
-    case top
-    case bot
-}
-
-public enum SpaceStyles {
-    case success
-    case error
-    case warning
-}
-
-public enum SpaceOptions {
-    case spaceColor(color: UIColor)
-    case spaceDescription(text: String)
-    case spaceTitle(text: String)
-    case spaceHeight(height: CGFloat)
-    case spaceHideTimer(timer: Double)
-    case customView(view: UIView)
-    case tapAction(() -> ())
-    case spaceShowDuration(duration: Double)
-    case spaceHideDuration(duration: Double)
-    case spaceReturnDuration(duration: Double)
-    case spaceHideDelay(delay: Double)
-    case spaceShowDelay(delay: Double)
-    case spaceReturnDelay(delay: Double)
-    case possibleDirectionToHide([HideDirection])
-    case image(img: UIImage?)
-    case titleView(view: UILabel)
-    case descriptionView(view: UILabel)
-    case titleColor(color: UIColor)
-    case descriptionColor(color: UIColor)
-    case titleFont(font: UIFont)
-    case descriptionFont(font: UIFont)
-    case shouldAutoHide(should: Bool)
-    case spaceStyle(style: SpaceStyles?)
-    case spacePosition(position: SpacePosition)
-    case swipeAction(() -> ())
-    case buttonAction(() -> ())
-}
-
 internal extension UIView {
     var x: CGFloat {
         get {
@@ -583,20 +527,6 @@ internal extension UIView {
         } set {
             frame = CGRect(x: x, y: y, width: w, height: newValue)
         }
-    }
-}
-
-public extension UIViewController {
-    func showSpace(spaceOptions: [SpaceOptions]?) {
-        SpaceView(spaceOptions: nil).show()
-    }
-    
-    func showSpace(title: String, spaceOptions: [SpaceOptions]?) {
-        SpaceView(title: title, spaceOptions: spaceOptions).show()
-    }
-    
-    func showSpace(title: String, description: String, spaceOptions: [SpaceOptions]?) {
-        SpaceView(title: title, description: description, spaceOptions: spaceOptions).show()
     }
 }
 

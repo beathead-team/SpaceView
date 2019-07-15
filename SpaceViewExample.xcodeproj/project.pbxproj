@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		AE1E76A622DC615800C3BF11 /* SpaceWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE1E76A522DC615800C3BF11 /* SpaceWindow.swift */; };
+		AE1E76A822DC623000C3BF11 /* SpaceOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE1E76A722DC623000C3BF11 /* SpaceOptions.swift */; };
 		CEF67A871E11736500787032 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CEF67A861E11736500787032 /* Assets.xcassets */; };
 		CEF67A8E1E11739500787032 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF67A8C1E11739500787032 /* AppDelegate.swift */; };
 		CEF67A8F1E11739500787032 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF67A8D1E11739500787032 /* ViewController.swift */; };
@@ -16,6 +18,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		AE1E76A522DC615800C3BF11 /* SpaceWindow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SpaceWindow.swift; path = SpaceView/Classes/SpaceWindow.swift; sourceTree = "<group>"; };
+		AE1E76A722DC623000C3BF11 /* SpaceOptions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SpaceOptions.swift; path = SpaceView/Classes/SpaceOptions.swift; sourceTree = "<group>"; };
 		CE10B5B91E0F360500E57358 /* SpaceViewExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SpaceViewExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CEF67A861E11736500787032 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = Example/Assets.xcassets; sourceTree = SOURCE_ROOT; };
 		CEF67A8A1E11737F00787032 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = Example/Info.plist; sourceTree = SOURCE_ROOT; };
@@ -40,6 +44,8 @@
 		CE10B5B01E0F360500E57358 = {
 			isa = PBXGroup;
 			children = (
+				AE1E76A722DC623000C3BF11 /* SpaceOptions.swift */,
+				AE1E76A522DC615800C3BF11 /* SpaceWindow.swift */,
 				CEF67A901E1173A900787032 /* SpaceView.swift */,
 				CE10B5BB1E0F360500E57358 /* SpaceViewExample */,
 				CE10B5BA1E0F360500E57358 /* Products */,
@@ -141,7 +147,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AE1E76A622DC615800C3BF11 /* SpaceWindow.swift in Sources */,
 				CEF67A8F1E11739500787032 /* ViewController.swift in Sources */,
+				AE1E76A822DC623000C3BF11 /* SpaceOptions.swift in Sources */,
 				CEF67A8E1E11739500787032 /* AppDelegate.swift in Sources */,
 				CEF67A911E1173A900787032 /* SpaceView.swift in Sources */,
 			);

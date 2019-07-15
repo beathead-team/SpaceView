@@ -105,8 +105,12 @@ class ViewController: UIViewController {
         if botSwipeAccepted {
             possibleDirectionsToHide.append(.bot)
         }
+
+        let spaceWindow = UIApplication.shared.windows[0] as! SpaceWindow
         
-        self.showSpace(title: spaceTitle, description: spaceDescr, spaceOptions: [
+        spaceWindow.showSpaceView(with: [
+            .spaceTitle(text: spaceTitle),
+            .spaceDescription(text: spaceDescr),
             .spaceHideTimer(timer: timeToAutoHide),
             .possibleDirectionToHide(possibleDirectionsToHide),
             .shouldAutoHide(should: shouldAutoHide),
