@@ -8,7 +8,7 @@
 
 import UIKit
 
-public class SpaceWindow: UIWindow {
+open class SpaceWindow: UIWindow {
     public func showSpaceView(with spaceOptions: [SpaceOptions]) {
         spaceOptionsQueue.append(spaceOptions)
         processQueue()
